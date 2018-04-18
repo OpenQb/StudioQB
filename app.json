@@ -1,0 +1,22 @@
+{
+    "name"			: "StudioQB",
+	"version"		: "1.0.0",
+    "build"         : 1,
+    "namespace"		: "com.github.openqb.StudioQB",
+	
+	"supportedOs"   : ["android","ios","osx","windows","linux"],
+    "tags"             : "IDE, QML Creator, Qb Creator",
+
+	"category"      : "Applications",
+	"subCategory"   : "Tools",
+	"genre"   		: "Tools",
+	
+    "minQbVersion"     : "1.0.1",
+    "appVariant"       : "APP",
+    "packageVariant"   : "QAP",
+
+    "description"   : "Integrated development environment (IDE) for Qb",
+
+    "author"		: [{"name":"Kawser","link":"https://github.com/mkawserm"}],
+    "projectLink"	: [{"name":"GitHub","link":"OpenQb/StudioQB"}]
+}
