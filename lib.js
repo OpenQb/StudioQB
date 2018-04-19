@@ -5,6 +5,7 @@ var objAppTheme;
 var objTopToolBar;
 var objMainStack;
 var objBottomToolBar;
+var objPackageReader;
 
 var appToolBarLoader;
 var appStatusBarLoader;

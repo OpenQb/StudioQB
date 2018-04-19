@@ -15,6 +15,7 @@ QbApp {
 
     Component.onCompleted: {
         Lib.objAppTheme = objAppTheme;
+        Lib.objPackageReader = objPackageReader;
 
         Lib.objTopToolBar = objTopToolBar;
         Lib.appToolBarLoader = objTopToolBar.appToolBar;
@@ -36,6 +37,10 @@ QbApp {
 
     QbMetaTheme{
         id: objAppTheme
+    }
+
+    QbAppPackageReader{
+        id: objPackageReader
     }
 
     Pane{
