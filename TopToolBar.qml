@@ -50,10 +50,20 @@ ToolBar{
                 anchors.top: parent.top
                 height: parent.height
                 width: height
-                text: "L"
+                text: QbMF3.icon("mf-menu")
+                font.family: QbMF3.family
                 visible: appLeftSiderBarVisible
                 onClicked: {
                     leftSideBarClicked();
+                    if(rotation == 0){
+                        rotation = 90;
+                    }
+                    else{
+                        rotation = 0;
+                    }
+                }
+                Behavior on rotation{
+                    NumberAnimation{duration: 150}
                 }
             }
 
@@ -63,10 +73,20 @@ ToolBar{
                 anchors.top: parent.top
                 height: parent.height
                 width: height
-                text: "R"
+                text: QbMF3.icon("mf-menu")
+                font.family: QbMF3.family
                 visible: appRightSiderBarVisible
                 onClicked: {
                     rightSideBarClicked();
+                    if(rotation == 0){
+                        rotation = 90;
+                    }
+                    else{
+                        rotation = 0;
+                    }
+                }
+                Behavior on rotation{
+                    NumberAnimation{duration: 150}
                 }
             }
 
