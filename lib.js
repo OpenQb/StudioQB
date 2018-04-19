@@ -6,9 +6,16 @@ var objTopToolBar;
 var objMainStack;
 var objBottomToolBar;
 
-var appToolBar;
-var appStatusBar;
-var appBottomBar;
+var appToolBarLoader;
+var appStatusBarLoader;
+var appBottomBarLoader;
+
+
+var objLeftSideBar;
+var objRightSideBar;
+
+var appLeftSideBarLoader;
+var appRightSideBarLoader;
 
 function setup(appUi){
     objAppUi = appUi;

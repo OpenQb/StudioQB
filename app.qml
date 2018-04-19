@@ -15,12 +15,22 @@ QbApp {
 
     Component.onCompleted: {
         Lib.objAppTheme = objAppTheme;
+
         Lib.objTopToolBar = objTopToolBar;
-        Lib.appToolBar = objTopToolBar.appToolBar;
-        Lib.appStatusBar = objTopToolBar.appStatusBar;
+        Lib.appToolBarLoader = objTopToolBar.appToolBar;
+        Lib.appStatusBarLoader = objTopToolBar.appStatusBar;
+
         Lib.objMainStack = objMainStack;
+
         Lib.objBottomToolBar = objBottomToolBar;
-        Lib.appBottomBar = objBottomToolBar.appBottomBar;
+        Lib.appBottomBarLoader = objBottomToolBar.appBottomBar;
+
+        Lib.objLeftSideBar = objLeftSideBar;
+        Lib.objRightSideBar = objRightSideBar;
+
+        Lib.appLeftSideBarLoader = objLeftSideBar.appSideBar;
+        Lib.appRightSideBarLoader = objRightSideBar.appSideBar;
+
         Lib.setup(objAppUi);
     }
 
@@ -51,6 +61,20 @@ QbApp {
             anchors.right: parent.right
             height: QbCoreOne.os() === "android"?QbCoreOne.scale(75):QbCoreOne.scale(50)
             appStatusBarHeight: QbCoreOne.os() === "android"?QbCoreOne.scale(25):0
+            z: 10000
+        }
+
+        SideBar{
+            id: objLeftSideBar
+            anchors.left: parent.left
+            width: 1
+            z: 10000
+        }
+
+        SideBar{
+            id: objRightSideBar
+            anchors.right: parent.right
+            width: 1
             z: 10000
         }
 
