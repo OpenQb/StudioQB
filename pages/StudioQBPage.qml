@@ -4,7 +4,7 @@ import QtQuick.Controls.Material 2.3
 
 import Qb 1.0
 import Qb.Core 1.0
-
+import "../lib.js" as Lib
 
 Page{
     id: objPage
@@ -12,6 +12,8 @@ Page{
     bottomPadding: 0
     leftPadding: 0
     rightPadding: 0
+
+    property string appId: Lib.objAppUi.appId;
 
     property Component leftBar: null
     property Component rightBar: null

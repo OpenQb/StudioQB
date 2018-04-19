@@ -37,3 +37,7 @@ function setup(appUi){
 function pushPage(page){
     objAppUi.pushPage(page);
 }
+
+function isDark(color){
+    return objAppTheme.isDark(color);
+}

@@ -17,6 +17,7 @@ ToolBar{
 
     signal leftSideBarClicked();
     signal rightSideBarClicked();
+    Material.elevation: 5
 
     Column{
         anchors.fill: parent

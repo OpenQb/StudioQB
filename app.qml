@@ -270,7 +270,8 @@ QbApp {
                     setupPage(incubator.object);
                 }
             }
-        } else {
+        }
+        else {
             setupPage(incubator.object);
         }
     }
