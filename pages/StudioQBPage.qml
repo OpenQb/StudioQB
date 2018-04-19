@@ -13,8 +13,8 @@ Page{
     leftPadding: 0
     rightPadding: 0
 
-    property Item leftBar: null
-    property Item rightBar: null
-    property Item topBar: null
-    property Item bottomBar: null
+    property Component leftBar: null
+    property Component rightBar: null
+    property Component topBar: null
+    property Component bottomBar: null
 }

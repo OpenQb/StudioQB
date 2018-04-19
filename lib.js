@@ -27,8 +27,12 @@ function setup(appUi){
     themeOne["accent"] = "black";
     themeOne["background"] = "white";
     themeOne["foreground"] = "black";
-    themeOne["theme"] = "light";
+    themeOne["theme"] = "dark";
     objAppTheme.setThemeFromJsonData(JSON.stringify(themeOne));
 
-    objMainStack.push(appUi.absoluteURL("/pages/PageInterface.qml"))
+    pushPage("/pages/TestPage.qml");
+}
+
+function pushPage(page){
+    objAppUi.pushPage(page);
 }

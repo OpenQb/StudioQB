@@ -11,6 +11,12 @@ ToolBar{
     property alias appToolBar: objAppToolBar
     property alias appStatusBar: objAppStatusBar
     property alias appStatusBarHeight: objStatusBarPlaceHolder.height
+    property bool appLeftSiderBarVisible: false
+    property bool appRightSiderBarVisible: false
+
+    signal leftSideBarClicked();
+    signal rightSideBarClicked();
+
     Column{
         anchors.fill: parent
         Item{
@@ -26,9 +32,39 @@ ToolBar{
             id: objToolBarPlaceHolder
             width: parent.width
             height: parent.height - objStatusBarPlaceHolder.height
+
+            ToolButton{
+                id: objLeftSideBarButton
+                anchors.left: parent.left
+                anchors.top: parent.top
+                height: parent.height
+                width: height
+                text: "L"
+                visible: appLeftSiderBarVisible
+                onClicked: {
+                    leftSideBarClicked();
+                }
+            }
+
+            ToolButton{
+                id: objRightSideBarButton
+                anchors.right: parent.right
+                anchors.top: parent.top
+                height: parent.height
+                width: height
+                text: "R"
+                visible: appRightSiderBarVisible
+                onClicked: {
+                    rightSideBarClicked();
+                }
+            }
+
             Loader{
                 id: objAppToolBar
-                anchors.fill: parent
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                anchors.left: objLeftSideBarButton.visible?objLeftSideBarButton.right:parent.left
+                anchors.right: objRightSideBarButton.visible?objRightSideBarButton.left:parent.right
             }
         }
     }
