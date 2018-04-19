@@ -8,6 +8,7 @@ import Qb.Core 1.0
 
 ToolBar{
     id: objTopToolBar
+    property alias appLogo: objLogo.source
     property alias appToolBar: objAppToolBar
     property alias appStatusBar: objAppStatusBar
     property alias appStatusBarHeight: objStatusBarPlaceHolder.height
@@ -32,10 +33,20 @@ ToolBar{
             id: objToolBarPlaceHolder
             width: parent.width
             height: parent.height - objStatusBarPlaceHolder.height
+            Image{
+                id: objLogo
+                anchors.top: parent.top
+                anchors.bottom: parent.bottom
+                width: parent.height
+                height: parent.height
+                smooth: true
+                mipmap: true
+                fillMode: Image.Image.PreserveAspectFit
+            }
 
             ToolButton{
                 id: objLeftSideBarButton
-                anchors.left: parent.left
+                anchors.left: objLogo.right
                 anchors.top: parent.top
                 height: parent.height
                 width: height
@@ -63,7 +74,7 @@ ToolBar{
                 id: objAppToolBar
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                anchors.left: objLeftSideBarButton.visible?objLeftSideBarButton.right:parent.left
+                anchors.left: objLeftSideBarButton.visible?objLeftSideBarButton.right:objLogo.right
                 anchors.right: objRightSideBarButton.visible?objRightSideBarButton.left:parent.right
             }
         }

@@ -75,6 +75,7 @@ QbApp {
             anchors.right: parent.right
             height: QbCoreOne.os() === "android"?QbCoreOne.scale(75):QbCoreOne.scale(50)
             appStatusBarHeight: QbCoreOne.os() === "android"?QbCoreOne.scale(25):0
+            appLogo: objAppUi.absoluteURL("/images/StudioQB.png")
             z: 10000
             onLeftSideBarClicked: {
                 toggleLeftSideBar();
