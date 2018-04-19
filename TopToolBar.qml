@@ -8,20 +8,28 @@ import Qb.Core 1.0
 
 ToolBar{
     id: objTopToolBar
-    width: parent.width
-    height: QbCoreOne.os() === "android"?QbCoreOne.scale(75):QbCoreOne.scale(50)
+    property alias appToolBar: objAppToolBar
+    property alias appStatusBar: objAppStatusBar
+    property alias appStatusBarHeight: objStatusBarPlaceHolder.height
     Column{
         anchors.fill: parent
         Item{
             id: objStatusBarPlaceHolder
             width: parent.width
-            height: QbCoreOne.os() === "android"?QbCoreOne.scale(25):0
+            Loader{
+                id: objAppStatusBar
+                anchors.fill: parent
+            }
         }
 
         Item{
             id: objToolBarPlaceHolder
             width: parent.width
             height: parent.height - objStatusBarPlaceHolder.height
+            Loader{
+                id: objAppToolBar
+                anchors.fill: parent
+            }
         }
     }
 }
