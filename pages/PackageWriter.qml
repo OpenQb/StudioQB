@@ -196,6 +196,7 @@ StudioQBPage {
                         var pv = objPackageVariant.textFromValue(objPackageVariant.value);
                         if(objBuildDir.text.length>0 && objProjectDir.text.length>0){
                             objWriter.setPackageVariant(pv);
+                            objWriter.resetPublicKey();
                             if(objWriter.createPackage(objProjectDir.text,objBuildDir.text)){
                                 objMessageBox.text = "Package created";
                             }
