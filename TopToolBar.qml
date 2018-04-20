@@ -14,9 +14,11 @@ ToolBar{
     property alias appStatusBarHeight: objStatusBarPlaceHolder.height
     property bool appLeftSiderBarVisible: false
     property bool appRightSiderBarVisible: false
+    property bool appBackButtonVisible: false
 
     signal leftSideBarClicked();
     signal rightSideBarClicked();
+    signal backClicked();
     Material.elevation: 5
 
     Column{
@@ -34,20 +36,39 @@ ToolBar{
             id: objToolBarPlaceHolder
             width: parent.width
             height: parent.height - objStatusBarPlaceHolder.height
-            Image{
-                id: objLogo
-                anchors.top: parent.top
-                anchors.bottom: parent.bottom
-                width: parent.height
+            Item{
+                id: objLogoPlaceHolder
+                width: objBackButton.visible?parent.height*2:parent.height
                 height: parent.height
-                smooth: true
-                mipmap: true
-                fillMode: Image.Image.PreserveAspectFit
+                Image{
+                    id: objLogo
+                    anchors.top: parent.top
+                    anchors.bottom: parent.bottom
+                    anchors.left: parent.left
+                    width: parent.height
+                    height: parent.height
+                    smooth: true
+                    mipmap: true
+                    fillMode: Image.Image.PreserveAspectFit
+                }
+                ToolButton{
+                    id: objBackButton
+                    anchors.right: parent.right
+                    anchors.top: parent.top
+                    height: parent.height
+                    width: height
+                    visible: appBackButtonVisible
+                    text: QbMF3.icon("mf-keyboard_arrow_left")
+                    font.family: QbMF3.family
+                    onClicked: {
+                        backClicked();
+                    }
+                }
             }
 
             ToolButton{
                 id: objLeftSideBarButton
-                anchors.left: objLogo.right
+                anchors.left: objLogoPlaceHolder.right
                 anchors.top: parent.top
                 height: parent.height
                 width: height
@@ -95,7 +116,7 @@ ToolBar{
                 id: objAppToolBar
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                anchors.left: objLeftSideBarButton.visible?objLeftSideBarButton.right:objLogo.right
+                anchors.left: objLeftSideBarButton.visible?objLeftSideBarButton.right:objLogoPlaceHolder.right
                 anchors.right: objRightSideBarButton.visible?objRightSideBarButton.left:parent.right
             }
         }

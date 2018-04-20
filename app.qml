@@ -76,7 +76,12 @@ QbApp {
             height: QbCoreOne.os() === "android"?QbCoreOne.scale(75):QbCoreOne.scale(50)
             appStatusBarHeight: QbCoreOne.os() === "android"?QbCoreOne.scale(25):0
             appLogo: objAppUi.absoluteURL("/images/StudioQB.png")
+            appBackButtonVisible: objMainStack.depth>1
             z: 10000
+            onBackClicked: {
+                popPage();
+            }
+
             onLeftSideBarClicked: {
                 toggleLeftSideBar();
             }
@@ -276,6 +281,13 @@ QbApp {
         }
     }
 
+    function popPage(){
+        if(objMainStack.depth>1){
+            objMainStack.pop();
+            setupPage2(objMainStack.currentItem);
+        }
+    }
+
     function toggleLeftSideBar(){
         if(objLeftSideBar.width === objAppUi.leftSideBarWidth){
             objLeftSideBar.width = 0;
@@ -301,5 +313,13 @@ QbApp {
         objLeftSideBar.appSideBar.sourceComponent = cpage.leftBar;
         objRightSideBar.appSideBar.sourceComponent = cpage.rightBar;
         objMainStack.push(cpage);
+    }
+
+    function setupPage2(objPage){
+        var cpage = objPage;
+        objTopToolBar.appToolBar.sourceComponent = cpage.topBar;
+        objBottomToolBar.appBottomBar.sourceComponent = cpage.bottomBar;
+        objLeftSideBar.appSideBar.sourceComponent = cpage.leftBar;
+        objRightSideBar.appSideBar.sourceComponent = cpage.rightBar;
     }
 }
