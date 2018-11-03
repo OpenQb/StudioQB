@@ -10,6 +10,7 @@ import "../lib.js" as Lib
 
 StudioQBPage {
     id: objPage
+    property int version: 1
 
     Component.onCompleted: {
         objPWSettings.setAppId(objPage.appId);
@@ -25,6 +26,7 @@ StudioQBPage {
         property alias projectDir: objProjectDir.text
         property alias buildDir: objBuildDir.text
         property alias projectVariant: objPackageVariant.value
+        property alias encryptionVersion: objPage.version
     }
 
     Flickable{
@@ -162,6 +164,17 @@ StudioQBPage {
                 }
 
                 SpinBox {
+                    id: objPackageVersion
+                    anchors.right: objPackageVariant.left
+                    from: 1
+                    to: 3
+                    value: 1
+                    onValueChanged: {
+                        objPage.version = value;
+                    }
+                }
+
+                SpinBox {
                     id: objPackageVariant
                     anchors.right: objBuildButton.left
                     from: 0
@@ -195,6 +208,7 @@ StudioQBPage {
                     onClicked: {
                         var pv = objPackageVariant.textFromValue(objPackageVariant.value);
                         if(objBuildDir.text.length>0 && objProjectDir.text.length>0){
+                            objWriter.setVersion(objPage.version);
                             objWriter.setPackageVariant(pv);
                             objWriter.resetPublicKey();
                             if(objWriter.createPackage(objProjectDir.text,objBuildDir.text)){
