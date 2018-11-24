@@ -15,4 +15,7 @@ Project {
     Files{
         paths:"./app.json"
     }
+    Files{
+        paths:"./StudioQBCore/qmldir"
+    }
 }
