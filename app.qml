@@ -12,4 +12,17 @@ ZeUi.ZSOneAppUi{
     id: objMainAppUi
     dockLogo: objMainAppUi.absoluteURL("/images/StudioQB.png")
     changeWindowPosition: true
+
+    QbSettings{
+        id: objSettings
+        name: "StudioQB"
+        property alias windowWidth: objMainAppUi.windowWidth
+        property alias windowHeight: objMainAppUi.windowHeight
+        property alias windowX: objMainAppUi.windowX
+        property alias windowY: objMainAppUi.windowY
+    }
+
+    Component.onCompleted: {
+        objMainAppUi.addPage("/pages/ProjectsPage.qml",{});
+    }
 }
