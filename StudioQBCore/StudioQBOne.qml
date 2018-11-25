@@ -55,6 +55,46 @@ Item {
         }
     }
 
+    function searchInProjectListModel(tag){
+        var q = "SELECT * FROM ProjectList WHERE"
+                +" name LIKE '%"+tag+"%' COLLATE NOCASE"
+                +" OR source_dir LIKE '%"+tag+"%' COLLATE NOCASE"
+                +" OR output_dir LIKE '%"+tag+"%' COLLATE NOCASE;";
+
+        objProjectListModel.clear();
+        objExSql.open();
+        if(objExSql.isOpen()){
+            objExSql.beginQuery();
+            if(objExSql.exec(q)){
+                if(objExSql.exec()){
+                    while(objExSql.next()){
+                        var data = {};
+                        data["pid"] = objExSql.value("pid");
+                        data["name"] = objExSql.value("name");
+                        data["source_dir"] = objExSql.value("source_dir");
+                        data["output_dir"] = objExSql.value("output_dir");
+                        data["export_format"] = objExSql.value("export_format");
+                        data["json"] = objExSql.value("json");
+                        objProjectListModel.append(data);
+
+                    }
+                }
+                else{
+                    console.error(objLoggingCategory,"Failed to execute query inside getProjectById");
+                    console.error(objLoggingCategory,objExSql.lastQueryError());
+                }
+            }
+            else{
+                console.error(objLoggingCategory,"Failed to prepare query inside getProjectById");
+            }
+            objExSql.endQuery();
+        }
+        else{
+            console.error(objLoggingCategory,"Db is not open.");
+        }
+
+    }
+
     function refreshProjectListModel(){
         objProjectListModel.clear();
 
@@ -241,6 +281,33 @@ Item {
         }
 
         return data;
+    }
+
+    function removeProjectFromProjectListById(pid){
+        var success = false;
+        objExSql.open();
+        if(objExSql.isOpen()){
+            objExSql.beginQuery();
+            if(objExSql.prepare("DELETE FROM ProjectList WHERE pid=:pid;")){
+                objExSql.bindValue(":pid",pid,QbExSql.INT32);
+                if(objExSql.exec()){
+                    success = true;
+                }
+                else{
+                    console.error(objLoggingCategory,"Failed to execute query inside deleteProjectById");
+                    console.error(objLoggingCategory,objExSql.lastQueryError());
+                }
+            }
+            else{
+                console.error(objLoggingCategory,"Failed to prepare query inside deleteProjectById");
+            }
+            objExSql.endQuery();
+        }
+        else{
+            console.error(objLoggingCategory,"Db is not open.");
+        }
+
+        return success;
     }
 
     function dbPath(){
