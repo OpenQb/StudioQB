@@ -21,12 +21,12 @@ ZeUi.ZSOneAppPage{
             icon: "mf-refresh"
             title: "Refresh"
         }
-
     }
 
     onSelectedContextDockItem: {
         //title
         if(title === "Add"){
+            objAddProjectDialog.resetFields();
             objAddProjectDialog.open();
         }
         else if(title === "Refresh"){
@@ -34,20 +34,31 @@ ZeUi.ZSOneAppPage{
         }
     }
 
-    ListView{
-        anchors.fill: parent
-        model: StudioQBCore.StudioQBOne.projectListModel
-        delegate: Rectangle{
-            width: objProjectsPage.width
-            height: 30
-            color: index%2?"lightgrey":"lightyellow"
-
-            Text{
-                anchors.fill: parent
-                text: name
+    Rectangle{
+        anchors.centerIn: parent
+        width: parent.width*0.80
+        height: parent.height*0.80
+        color: "transparent"
+        border.width: 5
+        border.color: "blue"
+        ListView{
+            id: objProjectsListView
+            width: parent.width - parent.border.width*2
+            height: parent.height - parent.border.width*2
+            anchors.centerIn: parent
+            model: StudioQBCore.StudioQBOne.projectListModel
+            delegate: Rectangle{
+                width: objProjectsListView.width
+                height: 30
+                color: index%2?"lightgrey":"lightyellow"
+                Text{
+                    anchors.fill: parent
+                    text: name
+                }
             }
         }
     }
+
 
     StudioQBComp.SQAddProjectDialog{
         id: objAddProjectDialog
@@ -55,7 +66,6 @@ ZeUi.ZSOneAppPage{
         onProjectAdded: {
             StudioQBCore.StudioQBOne.refreshProjectListModel();
             objAddProjectDialog.close();
-            objAddProjectDialog.resetFields();
         }
     }
 
