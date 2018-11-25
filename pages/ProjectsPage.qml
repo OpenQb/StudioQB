@@ -4,6 +4,7 @@ import QtQuick.Controls.Material 2.2
 
 import "../ZeUi" 1.0 as ZeUi
 import "../StudioQBCore" 1.0 as StudioQBCore
+import "../StudioQBComp" as StudioQBComp
 
 ZeUi.ZSOneAppPage{
     id: objProjectsPage
@@ -23,7 +24,15 @@ ZeUi.ZSOneAppPage{
             }
         }
     }
+
+    StudioQBComp.SQAddProjectDialog{
+        id: objAddProjectDialog
+        anchors.fill: parent
+    }
+
+
     onPageCreated: {
         StudioQBCore.StudioQBOne.refreshProjectListModel();
+        objAddProjectDialog.open();
     }
 }
