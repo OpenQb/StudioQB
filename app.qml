@@ -26,11 +26,11 @@ ZeUi.ZSOneAppUi{
         var theme = {};
         theme["primary"] = "#004361";
         theme["secondary"] = "#007290";
-        theme["background"] = "lightgrey";
+        theme["background"] = "white";
         theme["accent"] = "#A3D5EF";
         theme["theme"] = "light";
 
         ZeUi.ZBTheme.metaTheme.setThemeFromJsonData(JSON.stringify(theme));
-        objMainAppUi.addPage("/pages/ProjectsPage.qml",{});
+        objMainAppUi.addPage("/StudioQB/ProjectsPage.qml",{});
     }
 }

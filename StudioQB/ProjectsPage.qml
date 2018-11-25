@@ -2,13 +2,37 @@ import QtQuick 2.11
 import QtQuick.Controls 2.2
 import QtQuick.Controls.Material 2.2
 
-import "../ZeUi" 1.0 as ZeUi
-import "../StudioQBCore" 1.0 as StudioQBCore
-import "../StudioQBComp" as StudioQBComp
+import "./../ZeUi" 1.0 as ZeUi
+import "StudioQBCore" 1.0 as StudioQBCore
+import "StudioQBComp" as StudioQBComp
 
 ZeUi.ZSOneAppPage{
     id: objProjectsPage
     title: "Projects"
+    contextDock: objContextDock
+
+    ListModel{
+        id: objContextDock
+        ListElement{
+            icon: "mf-library_add"
+            title: "Add"
+        }
+        ListElement{
+            icon: "mf-refresh"
+            title: "Refresh"
+        }
+
+    }
+
+    onSelectedContextDockItem: {
+        //title
+        if(title === "Add"){
+            objAddProjectDialog.open();
+        }
+        else if(title === "Refresh"){
+            StudioQBCore.StudioQBOne.refreshProjectListModel();
+        }
+    }
 
     ListView{
         anchors.fill: parent
@@ -33,6 +57,5 @@ ZeUi.ZSOneAppPage{
 
     onPageCreated: {
         StudioQBCore.StudioQBOne.refreshProjectListModel();
-        objAddProjectDialog.open();
     }
 }

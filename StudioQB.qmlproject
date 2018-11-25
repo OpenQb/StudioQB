@@ -16,6 +16,6 @@ Project {
         paths:"./app.json"
     }
     Files{
-        paths:"./StudioQBCore/qmldir"
+        paths:"./StudioQB/StudioQBCore/qmldir"
     }
 }

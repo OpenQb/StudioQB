@@ -8,7 +8,7 @@ import Qb.Core.Private 1.0
 import QtQml 2.11
 import QtQuick 2.11
 
-import "../ZeUi" 1.0 as ZeUi
+import "./../../ZeUi" as ZeUi
 
 Item {
     id: objStudioQBOne

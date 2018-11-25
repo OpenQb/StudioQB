@@ -1,7 +1,7 @@
 import QtQuick 2.11
 import QtQml.Models 2.11
 
-import "../ZeUi" 1.0 as ZeUi
+import "./../../ZeUi" as ZeUi
 
 
 ZeUi.ZDialogUi{
@@ -14,6 +14,9 @@ ZeUi.ZDialogUi{
     }
 
     model: ObjectModel{
-        Rectangle { height: 30; width: 80; color: "red" }
+        SQTextField {
+            label: "Name"
+            width: objAddProjectDialog.dialogWidth
+        }
     }
 }
