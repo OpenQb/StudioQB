@@ -24,11 +24,6 @@ ZeUi.ZSOneAppPage{
         }
     }
     onPageCreated: {
-        StudioQBCore.StudioQBOne.dbPath();
-        console.log(StudioQBCore.StudioQBOne.removeProjectFromProjectListById(1));
-        StudioQBCore.StudioQBOne.searchInProjectListModel("name");
-        //StudioQBCore.StudioQBOne.refreshProjectListModel();
-
-        //console.log(StudioQBCore.StudioQBOne.getProjectById(1));
+        StudioQBCore.StudioQBOne.refreshProjectListModel();
     }
 }
