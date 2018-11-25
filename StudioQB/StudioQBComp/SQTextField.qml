@@ -35,22 +35,23 @@ Item {
 
     Rectangle{
         anchors.fill: parent
-        //color: ZeUi.ZBTheme.primary
         radius: objCTextField.radius
-        color: "transparent"
-        Rectangle{
-            height: parent.height
-            radius: objCTextField.radius
-            width: objCTextField.radius*2
-            color: ZeUi.ZBTheme.metaTheme.darker(ZeUi.ZBTheme.background,80)
-        }
-        Rectangle{
-            x: objMainRow.width - objCTextField.radius
-            height: parent.height
-            radius: objCTextField.radius
-            width: objCTextField.radius*2
-            color: ZeUi.ZBTheme.primary
-        }
+        color: ZeUi.ZBTheme.background
+
+//        Rectangle{
+//            height: parent.height
+//            radius: objCTextField.radius
+//            width: objCTextField.radius*2
+//            color: ZeUi.ZBTheme.background
+//        }
+//        Rectangle{
+//            x: objMainRow.width - objCTextField.radius
+//            height: parent.height
+//            radius: objCTextField.radius
+//            width: objCTextField.radius*2
+//            color: ZeUi.ZBTheme.background
+//        }
+
         Row{
             id: objMainRow
             x: objCTextField.radius
@@ -64,14 +65,14 @@ Item {
                 width: objCTextField.isFixedWidthForLabel?objCTextField.labelWidth:parent.width*(objCTextField.labelWidth/100.0)
                 height: parent.height
                 clip: true
-                color: ZeUi.ZBTheme.metaTheme.darker(ZeUi.ZBTheme.background,80)
+                color: ZeUi.ZBTheme.accent
                 Text{
                     anchors.fill: parent
                     anchors.leftMargin: 5
                     verticalAlignment: Text.AlignVCenter
                     height: parent.height
                     width: parent.width
-                    color: ZeUi.ZBTheme.primary
+                    color: ZeUi.ZBTheme.metaTheme.textColor(ZeUi.ZBTheme.accent)
                     text: objCTextField.label
                     font.pixelSize: objCTextField.fontSize
                 }
@@ -79,8 +80,10 @@ Item {
             Rectangle{
                 width: parent.width - objLabelField.width - objCTextField.radius
                 height: parent.height
-                color: ZeUi.ZBTheme.foreground
+                color: ZeUi.ZBTheme.background
                 clip: true
+                border.width: 1
+                border.color: ZeUi.ZBTheme.accent
 
                 TextInput {
                     id: objTextField
@@ -91,8 +94,8 @@ Item {
                     verticalAlignment: TextInput.AlignVCenter
                     activeFocusOnPress: true
                     selectionColor: "lightblue"
-                    selectedTextColor: ZeUi.ZBTheme.metaTheme.darker(ZeUi.ZBTheme.background,80)
-                    color: ZeUi.ZBTheme.metaTheme.darker(ZeUi.ZBTheme.background,80)
+                    selectedTextColor: ZeUi.ZBTheme.metaTheme.textColor(ZeUi.ZBTheme.background)
+                    color: ZeUi.ZBTheme.metaTheme.textColor(ZeUi.ZBTheme.background)
                     font.pixelSize: objCTextField.fontSize
                     readOnly: objCTextField.fieldReadOnly
                     Keys.onReturnPressed: nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)

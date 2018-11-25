@@ -29,6 +29,8 @@ ZeUi.ZSOneAppUi{
         theme["background"] = "white";
         theme["accent"] = "#A3D5EF";
         theme["theme"] = "light";
+        theme["error"] = "#B00020";
+        theme["foreground"] = "black";
 
         ZeUi.ZBTheme.metaTheme.setThemeFromJsonData(JSON.stringify(theme));
         objMainAppUi.addPage("/StudioQB/ProjectsPage.qml",{});

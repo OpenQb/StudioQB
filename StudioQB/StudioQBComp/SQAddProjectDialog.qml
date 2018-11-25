@@ -14,7 +14,7 @@ ZeUi.ZDialogUi{
     }
 
     model: ObjectModel{
-        SQTextField {
+        SQTextField2 {
             label: "Name"
             width: objAddProjectDialog.dialogWidth
         }

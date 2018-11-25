@@ -34,14 +34,14 @@ Item {
             height: parent.height
             radius: objCTextField.radius
             width: objCTextField.radius*2
-            color: ZeUi.ZBTheme.metaTheme.darker(ZeUi.ZBTheme.background,80)
+            color: ZeUi.ZBTheme.background
         }
         Rectangle{
             x: objMainRow.width - objCTextField.radius
             height: parent.height
             radius: objCTextField.radius
             width: objCTextField.radius*2
-            color: ZeUi.ZBTheme.primary
+            color: ZeUi.ZBTheme.background
         }
         Row{
             id: objMainRow
