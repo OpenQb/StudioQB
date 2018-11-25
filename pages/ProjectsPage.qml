@@ -9,22 +9,24 @@ ZeUi.ZSOneAppPage{
     id: objProjectsPage
     title: "Projects"
 
+    ListView{
+        anchors.fill: parent
+        model: StudioQBCore.StudioQBOne.projectListModel
+        delegate: Rectangle{
+            width: objProjectsPage.width
+            height: 30
+            color: index%2?"lightgrey":"lightyellow"
 
+            Text{
+                anchors.fill: parent
+                text: name
+            }
+        }
+    }
+    onPageCreated: {
+        StudioQBCore.StudioQBOne.dbPath();
+        StudioQBCore.StudioQBOne.refreshProjectListModel();
 
-
-//    Button{
-//        text: "TEST"
-//        onClicked: {
-//            console.log("Adding task");
-//            StudioQBCore.StudioQBOne.codeEngine.addTask(
-//                        "/StudioQBJs/TestScript.js",
-//                        objProjectsPage.testCallBack,"1;3;4")
-//        }
-//    }
-
-//    function testCallBack(message,args){
-//        console.log(message);
-//        console.log(args);
-//        console.log("Callback Called:");
-//    }
+        //console.log(StudioQBCore.StudioQBOne.getProjectById(1));
+    }
 }
