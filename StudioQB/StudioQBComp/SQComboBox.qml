@@ -13,7 +13,8 @@ Item {
     width: 200
     height: 40
 
-    property alias fieldText: objTextField.text
+    property alias fieldText: objComboBox.currentText
+    property alias comboBoxModel: objComboBox.model
 
     property string label: "Label"
     property int labelWidth: 20
@@ -30,13 +31,13 @@ Item {
     property color labelFieldColor: ZeUi.ZBTheme.accent
     property color labelFieldTextColor: ZeUi.ZBTheme.metaTheme.textColor(labelFieldBackgroundColor)
 
-    property color textFieldBackgroundColor: ZeUi.ZBTheme.metaTheme.idarker(labelFieldBackgroundColor,20)
-    property color textFieldColor: ZeUi.ZBTheme.accent
-    property color textFieldTextColor: ZeUi.ZBTheme.metaTheme.textColor(textFieldBackgroundColor)
+    property color comboBoxBackgroundColor: ZeUi.ZBTheme.metaTheme.idarker(labelFieldBackgroundColor,20)
+    property color textColor: ZeUi.ZBTheme.accent
+    property color comboBoxTextColor: ZeUi.ZBTheme.metaTheme.textColor(comboBoxBackgroundColor)
 
     onActiveFocusChanged: {
         if(activeFocus){
-            objTextField.forceActiveFocus();
+            objComboBox.forceActiveFocus();
         }
     }
 
@@ -76,65 +77,33 @@ Item {
             Rectangle{
                 width: parent.width - objLabelField.width
                 height: parent.height
-                color: objField.textFieldBackgroundColor
+                color: objField.comboBoxBackgroundColor
                 border.width: objField.borderWidth
                 border.color: objField.borderColor
                 clip: true
-
-                TextInput{
-                    id: objTextField
+                ComboBox{
+                    id: objComboBox
+                    Material.accent: objField.textColor
                     anchors.fill: parent
-                    selectionColor: "lightblue"
-                    selectedTextColor: "black"
-                    color: objField.textFieldTextColor
                     anchors.leftMargin: 10
                     anchors.rightMargin: 5
-                    readOnly: objField.fieldReadOnly
-                    verticalAlignment: TextInput.AlignVCenter
-                    activeFocusOnPress: true
                     activeFocusOnTab: false
                     Keys.onReturnPressed: nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
                     Keys.onEnterPressed: nextItemInFocusChain().forceActiveFocus(Qt.TabFocusReason)
-                    MouseArea{
-                        anchors.fill: parent
-                        acceptedButtons: Qt.LeftButton | Qt.RightButton
-                        onClicked: {
-                            var startPosition = objTextField.positionAt(mouse.x, mouse.y);
-                            objTextField.cursorPosition = startPosition;
-                            objTextField.forceActiveFocus();
-                            if (mouse.button === Qt.RightButton){
-                                objContextMenu.popup(mouse.x,mouse.y);
-                            }
-                        }
-                        onPressed: {
-                            var startPosition = objTextField.positionAt(mouse.x, mouse.y);
-                            objTextField.cursorPosition = startPosition;
-                            objTextField.forceActiveFocus();
-                        }
+                    background: Rectangle{
+                        color: objField.comboBoxBackgroundColor
+                    }
+                    contentItem: Text {
+                        leftPadding: 0
+                        rightPadding: objComboBox.indicator.width + objComboBox.spacing
 
+                        text: objComboBox.displayText
+                        font: objComboBox.font
+                        color: objComboBox.pressed ? "#17a81a" : ZeUi.ZBTheme.metaTheme.textColor(objField.comboBoxBackgroundColor)
+                        verticalAlignment: Text.AlignVCenter
+                        elide: Text.ElideRight
                     }
-                    Menu{
-                        id: objContextMenu
-                        //x: parent.width - width
-                        MenuItem {
-                            text: "Paste"
-                            onTriggered: {
-                                objTextField.text = QbCoreOne.textFromClipboard();
-                            }
-                        }
-                        MenuItem {
-                            text: "Copy"
-                            onTriggered: {
-                                QbCoreOne.copyTextToClipboard(objTextField.text);
-                            }
-                        }
-                        MenuItem {
-                            text: "Close"
-                            onTriggered: {
-                                objContextMenu.close();
-                            }
-                        }
-                    }
+
                 }
             }
         }

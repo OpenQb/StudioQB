@@ -40,6 +40,24 @@ Item {
         }
     }
 
+    ZeUi.ZNativeFolderDialog{
+        id: objFolderDialog
+        Connections{
+            target: objFolderDialog.folderDialog
+            onAccepted:{
+                //console.log(objFolderDialog.folderDialog.currentFolder)
+                var np = String(objFolderDialog.folderDialog.currentFolder);
+                if(Qt.platform.os === "windows"){
+                    np = np.substring(8);
+                }
+                else{
+                    np = np.substring(7);
+                }
+                objTextField.text  = np;
+            }
+        }
+    }
+
     Rectangle{
         id: objBackground
         anchors.fill: parent
@@ -74,7 +92,7 @@ Item {
             }
 
             Rectangle{
-                width: parent.width - objLabelField.width
+                width: parent.width - objLabelField.width - 75
                 height: parent.height
                 color: objField.textFieldBackgroundColor
                 border.width: objField.borderWidth
@@ -135,6 +153,19 @@ Item {
                             }
                         }
                     }
+                }
+            }
+
+            Button{
+                id: objButtonControl
+                width: 75
+                height: parent.height
+                text: "BROWSE"
+                background: Rectangle{
+                    color: objButtonControl.down?objField.textFieldBackgroundColor:objField.labelFieldBackgroundColor
+                }
+                onClicked: {
+                    objFolderDialog.folderDialog.open();
                 }
             }
         }

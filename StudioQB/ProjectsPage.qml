@@ -52,6 +52,11 @@ ZeUi.ZSOneAppPage{
     StudioQBComp.SQAddProjectDialog{
         id: objAddProjectDialog
         anchors.fill: parent
+        onProjectAdded: {
+            StudioQBCore.StudioQBOne.refreshProjectListModel();
+            objAddProjectDialog.close();
+            objAddProjectDialog.resetFields();
+        }
     }
 
 
