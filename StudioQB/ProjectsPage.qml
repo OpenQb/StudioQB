@@ -117,6 +117,21 @@ ZeUi.ZSOneAppPage{
             anchors.top: parent.top
             width: parent.width
             height: parent.height
+
+            Rectangle{
+                visible: StudioQBCore.StudioQBOne.projectListModel.count === 0
+                anchors.fill: parent
+                color: ZeUi.ZBTheme.metaTheme.computeColorList(ZeUi.ZBTheme.metaTheme.primary)[0]
+                Text{
+                    anchors.fill: parent
+                    verticalAlignment: Text.AlignVCenter
+                    horizontalAlignment: Text.AlignHCenter
+                    text: "No projects are found"
+                    color: ZeUi.ZBTheme.metaTheme.idarker(parent.color,50)
+                    font.pixelSize: 20
+                }
+            }
+
             ListView{
                 id: objProjectsListView
                 width: parent.width - 2
@@ -250,15 +265,16 @@ ZeUi.ZSOneAppPage{
                                     }
                                 }
                                 MenuItem {
-                                    text: "Remove"
-                                    onTriggered: {
-                                        StudioQBCore.StudioQBOne.removeProject(pid,name,source_dir,output_dir,export_format,json);
-                                    }
-                                }
-                                MenuItem {
                                     text: "Close"
                                     onTriggered: {
                                         StudioQBCore.StudioQBOne.closeProject(pid,name,source_dir,output_dir,export_format,json);
+                                    }
+                                }
+                                MenuSeparator{}
+                                MenuItem {
+                                    text: "Remove"
+                                    onTriggered: {
+                                        StudioQBCore.StudioQBOne.removeProject(pid,name,source_dir,output_dir,export_format,json);
                                     }
                                 }
                             }

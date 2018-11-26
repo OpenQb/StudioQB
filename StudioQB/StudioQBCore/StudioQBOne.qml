@@ -341,7 +341,11 @@ Item {
     }
 
     function removeProject(pid,name,source_dir,output_dir,export_format,json){
-        console.log("Remove Project:"+name);
+        //console.log("Remove Project:"+name);
+        closeProject(pid,name,source_dir,output_dir,export_format,json);
+        if(removeProjectFromProjectListById(pid)){
+            refreshProjectListModel();
+        }
     }
     function closeProject(pid,name,source_dir,output_dir,export_format,json){
         //console.log("Close Project:"+name);

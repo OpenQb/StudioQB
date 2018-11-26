@@ -13,6 +13,9 @@ ZeUi.ZSOneAppUi{
     id: objMainAppUi
     dockLogo: objMainAppUi.absoluteURL("/images/StudioQB.png")
     changeWindowPosition: true
+    onLogoClicked: {
+        objMainAppUi.changePage(0);
+    }
 
     QbSettings{
         id: objSettings
