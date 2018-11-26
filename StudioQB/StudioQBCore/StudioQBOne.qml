@@ -314,6 +314,17 @@ Item {
         return ZeUi.ZBLib.appUi.absoluteDatabasePath("StudioQB");
     }
 
+    function openProject(pid,name,source_dir,output_dir,export_format,json){
+        console.log("Open Project:"+name);
+    }
+
+    function removeProject(pid,name,source_dir,output_dir,export_format,json){
+        console.log("Remove Project:"+name);
+    }
+    function closeProject(pid,name,source_dir,output_dir,export_format,json){
+        console.log("Close Project:"+name);
+    }
+
     Component.onCompleted: {
         objCodeExecutionEngine.setAppId(ZeUi.ZBLib.appUi.appId);
         objExSql.setSQLDb(dbPath());
