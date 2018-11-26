@@ -5,7 +5,8 @@ import QtQuick.Controls.Material 2.4
 import Qb 1.0
 import Qb.Core 1.0
 
-import "ZeUi" 1.0 as ZeUi
+import "ZeUi" as ZeUi
+import "StudioQB/StudioQBCore" as StudioQBCore
 
 
 ZeUi.ZSOneAppUi{
@@ -31,8 +32,7 @@ ZeUi.ZSOneAppUi{
         theme["theme"] = "light";
         theme["error"] = "#B00020";
         theme["foreground"] = "black";
-
         ZeUi.ZBTheme.metaTheme.setThemeFromJsonData(JSON.stringify(theme));
-        objMainAppUi.addPage("/StudioQB/ProjectsPage.qml",{});
+        StudioQBCore.StudioQBOne.addPage("##ProjectsPage HOME##","/StudioQB/ProjectsPage.qml",{});
     }
 }

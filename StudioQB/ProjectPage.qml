@@ -14,12 +14,22 @@ ZeUi.ZSOneAppPage{
 
     property int pid: 0
     property string name: ""
-    property string sourceDir:""
-    property string outputDir:""
-    property string exportFormat: "QAP"
+    property string source_dir:""
+    property string output_dir:""
+    property string export_format: "QAP"
+    property string json:""
 
 
     ListModel{
         id: objContextDock
+        ListElement{
+            icon: "fa-file-archive-o"
+            title: "Build"
+        }
+    }
+
+    Rectangle{
+        anchors.fill: parent
+        color: "white"
     }
 }

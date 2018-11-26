@@ -30,6 +30,10 @@ Item {
         id: objExSql
     }
 
+    QbOneOneMap{
+        id: objOneOneMap
+    }
+
 
     /*ProjectList*/
     ListModel{
@@ -315,14 +319,55 @@ Item {
     }
 
     function openProject(pid,name,source_dir,output_dir,export_format,json){
-        console.log("Open Project:"+name);
+        //console.log("Open Project:"+name);
+        if(!objOneOneMap.isKeyExists(name)){
+            var d = {};
+            d["title"] = name;
+            d["pid"] = pid;
+            d["name"] = name;
+            d["source_dir"] = source_dir;
+            d["output_dir"] = output_dir;
+            d["export_format"] = export_format;
+            d["json"] = json;
+            objOneOneMap.append(name,pid);
+            ZeUi.ZBLib.appUi.addPage("/StudioQB/ProjectPage.qml",d);
+            return true;
+        }
+        else{
+            var index = objOneOneMap.indexOf(name);
+            ZeUi.ZBLib.appUi.changePage(index);
+            return true;
+        }
     }
 
     function removeProject(pid,name,source_dir,output_dir,export_format,json){
         console.log("Remove Project:"+name);
     }
     function closeProject(pid,name,source_dir,output_dir,export_format,json){
-        console.log("Close Project:"+name);
+        //console.log("Close Project:"+name);
+        if(objOneOneMap.isKeyExists(name)){
+            var index = objOneOneMap.indexOf(name);
+            ZeUi.ZBLib.appUi.closePage(index);
+            objOneOneMap.remove(index);
+            return true;
+        }
+        return false;
+    }
+
+    function ready(){
+    }
+
+    function addPage(name,source,dict){
+        if(!objOneOneMap.isKeyExists(name)){
+            objOneOneMap.append(name,source);
+            ZeUi.ZBLib.appUi.addPage(source,dict);
+            return true;
+        }
+        else{
+            var index = objOneOneMap.indexOf(name);
+            ZeUi.ZBLib.appUi.changePage(index);
+            return true;
+        }
     }
 
     Component.onCompleted: {
