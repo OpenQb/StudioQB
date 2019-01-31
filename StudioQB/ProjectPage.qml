@@ -75,7 +75,7 @@ ZeUi.ZSOneAppPage{
             data["output_dir"] = objProjectPage.output_dir;
             data["export_format"] = objProjectPage.export_format;
             data["json"] = objProjectPage.json;
-            data["version"] = 1;
+            data["version"] = 3;
             objProjectPage.isBuildingPack = true;
             objQbJSEngineEx.addTask("/StudioQB/StudioQBJs/BuildQbPack.js",
                                     buildQbPackCallback,
