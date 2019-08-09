@@ -20,7 +20,7 @@ ZeUi.ZSOneAppPage{
     property string name: ""
     property string source_dir:""
     property string output_dir:""
-    property string export_format: "QAP"
+    property string export_format: "QBP"
     property string json:""
 
     property bool isBuildingPack: false;

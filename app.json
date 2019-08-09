@@ -13,7 +13,7 @@
 	
     "minQbVersion"  : "1.0.0",
     "appVariant"    : "APP",
-    "packageVariant": "QAP",
+    "packageVariant": "QBP",
 
     "description"   : "Integrated development environment (IDE) for Qb",
 
